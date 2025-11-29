@@ -1,0 +1,81 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: home-ai-postgres
+    environment:
+      POSTGRES_DB: home_ai
+      POSTGRES_USER: home_ai
+      POSTGRES_PASSWORD: ${DB_PASSWORD:-password}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U home_ai"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  mcp-iot:
+    build:
+      context: .
+      dockerfile: Dockerfile.mcp
+    container_name: home-ai-mcp-iot
+    environment:
+      - MCP_IOT_PORT=8001
+    ports:
+      - "8001:8001"
+    depends_on:
+      - postgres
+
+  server:
+    build:
+      context: .
+      dockerfile: Dockerfile.server
+    container_name: home-ai-server
+    environment:
+      - DATABASE_URL=postgresql://home_ai:${DB_PASSWORD:-password}@postgres:5432/home_ai
+      - MCP_IOT_HOST=mcp-iot
+      - MCP_IOT_PORT=8001
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+      - ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY}
+      - LOG_LEVEL=${LOG_LEVEL:-INFO}
+      - STT_PROVIDER=${STT_PROVIDER:-google}
+      - TTS_PROVIDER=${TTS_PROVIDER:-gtts}
+      - LLM_PROVIDER=${LLM_PROVIDER:-openai}
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./logs/server:/app/logs
+    depends_on:
+      postgres:
+        condition: service_healthy
+      mcp-iot:
+        condition: service_started
+
+  client:
+    build:
+      context: .
+      dockerfile: Dockerfile.client
+    container_name: home-ai-client
+    environment:
+      - SERVER_HOST=server
+      - SERVER_PORT=8000
+      - STT_PROVIDER=${STT_PROVIDER:-google}
+      - TTS_PROVIDER=${TTS_PROVIDER:-gtts}
+      - LOG_LEVEL=${LOG_LEVEL:-INFO}
+    volumes:
+      - ./logs/client:/app/logs
+    depends_on:
+      - server
+    # Audio devices require host network or device mapping
+    # Uncomment below for audio access
+    # devices:
+    #   - /dev/snd:/dev/snd
+    # network_mode: host
+
+volumes:
+  postgres_data:
+

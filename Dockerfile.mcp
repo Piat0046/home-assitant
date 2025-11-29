@@ -1,0 +1,28 @@
+FROM python:3.11-slim
+
+WORKDIR /app
+
+# Install system dependencies
+RUN apt-get update && apt-get install -y \
+    gcc \
+    && rm -rf /var/lib/apt/lists/*
+
+# Install uv
+COPY --from=ghcr.io/astral-sh/uv:latest /uv /usr/local/bin/uv
+
+# Copy project files
+COPY pyproject.toml .
+COPY src/ src/
+
+# Install dependencies
+RUN uv sync --frozen --no-dev
+
+# Set environment variables
+ENV PYTHONPATH=/app/src
+
+# Expose port
+EXPOSE 8001
+
+# Run MCP IoT server
+CMD ["uv", "run", "python", "-m", "home_ai.mcp_iot.server"]
+

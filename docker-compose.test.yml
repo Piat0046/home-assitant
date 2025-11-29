@@ -1,0 +1,49 @@
+version: '3.8'
+
+services:
+  postgres-test:
+    image: postgres:16-alpine
+    container_name: home-ai-postgres-test
+    environment:
+      POSTGRES_DB: home_ai_test
+      POSTGRES_USER: home_ai
+      POSTGRES_PASSWORD: test_password
+    ports:
+      - "5433:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U home_ai"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  mcp-iot-test:
+    build:
+      context: .
+      dockerfile: Dockerfile.mcp
+    container_name: home-ai-mcp-iot-test
+    environment:
+      - MCP_IOT_PORT=8001
+    ports:
+      - "8002:8001"
+
+  server-test:
+    build:
+      context: .
+      dockerfile: Dockerfile.server
+    container_name: home-ai-server-test
+    environment:
+      - DATABASE_URL=postgresql://home_ai:test_password@postgres-test:5432/home_ai_test
+      - MCP_IOT_HOST=mcp-iot-test
+      - MCP_IOT_PORT=8001
+      - LOG_LEVEL=DEBUG
+      - STT_PROVIDER=google
+      - TTS_PROVIDER=gtts
+      - LLM_PROVIDER=openai
+    ports:
+      - "8003:8000"
+    depends_on:
+      postgres-test:
+        condition: service_healthy
+      mcp-iot-test:
+        condition: service_started
+
