@@ -11,7 +11,7 @@ class TestFileLogger:
         from home_ai.logging.file_logger import FileLogger
 
         log_dir = tmp_path / "logs" / "test"
-        logger = FileLogger(log_dir=str(log_dir), name="test")
+        _ = FileLogger(log_dir=str(log_dir), name="test")
 
         assert log_dir.exists()
 

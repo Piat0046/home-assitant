@@ -55,7 +55,7 @@ class TestGoogleSTT:
         stt._recognizer = MagicMock()
         stt._recognizer.recognize_google.side_effect = Exception("Recognition failed")
 
-        with pytest.raises(Exception):
+        with pytest.raises(Exception, match="Recognition failed"):
             stt.transcribe(b"fake_audio_data")
 
     def test_google_stt_default_language(self):
