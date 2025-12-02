@@ -9,9 +9,9 @@ from pydantic import BaseModel, ConfigDict, Field
 
 class RequestLog(BaseModel):
     """Model for request logs stored in PostgreSQL."""
-    
+
     model_config = ConfigDict(from_attributes=True)
-    
+
     id: int | None = None
     timestamp: datetime = Field(default_factory=datetime.now)
     request_id: UUID
@@ -26,13 +26,12 @@ class RequestLog(BaseModel):
 
 class ErrorLog(BaseModel):
     """Model for error logs stored in PostgreSQL."""
-    
+
     model_config = ConfigDict(from_attributes=True)
-    
+
     id: int | None = None
     timestamp: datetime = Field(default_factory=datetime.now)
     request_id: UUID | None = None
     error_type: str
     error_message: str
     stack_trace: str | None = None
-
