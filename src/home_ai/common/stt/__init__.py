@@ -1,2 +1,1 @@
 """Speech-to-Text implementations."""
-

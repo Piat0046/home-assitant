@@ -1,26 +1,26 @@
 """Database logging implementation for PostgreSQL."""
 
-from datetime import datetime
-from typing import Any, Callable
+from collections.abc import Callable
+from typing import Any
 from uuid import UUID
 
-from home_ai.logging.models import RequestLog, ErrorLog
+from home_ai.logging.models import ErrorLog, RequestLog
 
 
 class DatabaseLogger:
     """Logger that writes to PostgreSQL database.
-    
+
     Used for server-side logging of requests and errors.
     """
-    
+
     def __init__(self, session_factory: Callable):
         """Initialize database logger.
-        
+
         Args:
             session_factory: Callable that returns a database session.
         """
         self._session_factory = session_factory
-    
+
     def log_request(
         self,
         request_id: UUID,
@@ -33,7 +33,7 @@ class DatabaseLogger:
         level: str = "INFO",
     ) -> None:
         """Log a request to the database.
-        
+
         Args:
             request_id: Unique identifier for the request.
             input_type: Type of input ('text' or 'audio').
@@ -60,7 +60,7 @@ class DatabaseLogger:
             session.commit()
         finally:
             session.close()
-    
+
     def log_error(
         self,
         error_type: str,
@@ -69,7 +69,7 @@ class DatabaseLogger:
         request_id: UUID | None = None,
     ) -> None:
         """Log an error to the database.
-        
+
         Args:
             error_type: Type/class of the error.
             error_message: Error message.
@@ -88,4 +88,3 @@ class DatabaseLogger:
             session.commit()
         finally:
             session.close()
-

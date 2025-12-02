@@ -1,22 +1,20 @@
 """Ruff test file with intentional violations."""
-import os
-import sys
-import json
-from typing import List, Dict
 
-def bad_function( x,y ):
+
+def bad_function(x, y):
     """Function with style violations."""
-    unused_var = 'hello'
-    result=x+y
+    unused_var = "hello"
+    result = x + y
     if result == True:
-        print('yes')
+        print("yes")
     return result
 
+
 class BadClass:
-    def __init__(self,name):
-        self.name=name
+    def __init__(self, name):
+        self.name = name
 
     def method(self):
-        l = [1,2,3]
-        d = dict(a=1,b=2)
-        return l,d
+        l = [1, 2, 3]
+        d = dict(a=1, b=2)
+        return l, d

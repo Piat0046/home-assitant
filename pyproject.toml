@@ -80,6 +80,11 @@ select = [
 ]
 ignore = [
     "E501",   # line-length (handled by formatter)
+    "B008",   # function-call-in-default-argument (FastAPI Depends pattern)
+]
+exclude = [
+    "src/home_ai/ruff_test_example.py",
+    "src/home_ai/test_ruff_violations.py",
 ]
 
 [tool.ruff.format]

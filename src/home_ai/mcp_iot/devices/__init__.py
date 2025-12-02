@@ -1,2 +1,1 @@
 """IoT device implementations."""
-
