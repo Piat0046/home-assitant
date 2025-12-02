@@ -34,16 +34,19 @@ jobs:
           ref: ${{ github.head_ref }}
           fetch-depth: 0
 
-      - name: Setup Ruff
+      - name: Ruff check and fix
         uses: astral-sh/ruff-action@v3
         with:
-          args: "--version"
+          args: "check --fix"
+        continue-on-error: true
 
-      - name: Run Ruff fix and format
-        run: |
-          ruff check --fix . || true
-          ruff format .
-          ruff check --output-format=sarif --output-file=ruff-results.sarif . || true
+      - name: Ruff format
+        uses: astral-sh/ruff-action@v3
+        with:
+          args: "format"
+
+      - name: Ruff SARIF
+        run: ruff check --output-format=sarif --output-file=ruff-results.sarif . || true
 
       - name: Upload SARIF to GitHub
         uses: github/codeql-action/upload-sarif@v4
