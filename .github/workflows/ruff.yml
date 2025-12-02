@@ -1,7 +1,6 @@
 name: Ruff Auto Fix
 
 on:
-  pull_request:  # 테스트용 임시 추가
   workflow_dispatch:
     inputs:
       branch:
