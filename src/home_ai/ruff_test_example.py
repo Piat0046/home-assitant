@@ -1,5 +1,10 @@
 """Ruff test file - intentional violations for CI testing."""
 
+import json
+import os
+import sys
+from typing import Dict, List
+
 
 def process_data(data, options):
     """Process data with violations."""
