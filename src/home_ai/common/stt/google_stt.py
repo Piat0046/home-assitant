@@ -40,10 +40,10 @@ class GoogleSTT:
         try:
             text = self._recognizer.recognize_google(audio, language=self.language)
             return text
-        except sr.UnknownValueError:
-            raise Exception("Could not understand audio")
+        except sr.UnknownValueError as err:
+            raise Exception("Could not understand audio") from err
         except sr.RequestError as e:
-            raise Exception(f"API request failed: {e}")
+            raise Exception(f"API request failed: {e}") from e
 
     async def transcribe_async(self, audio_data: bytes) -> str:
         """Asynchronously transcribe audio data to text.
