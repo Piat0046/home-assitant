@@ -111,7 +111,7 @@ jobs:
           BASE_BRANCH: ${{ inputs.base_branch }}
           ISSUE_NUMBER: ${{ inputs.issue_number }}
         run: |
-          if gh pr view "${BRANCH}" &>/dev/null; then
+          if gh pr list --head "${BRANCH}" --state open --json number -q '.[0].number' | grep -q .; then
             echo "PR already exists for ${BRANCH}, skipping creation"
           else
             gh pr create \
