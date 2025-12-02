@@ -1,7 +1,7 @@
 name: Ruff Auto Fix
 
 on:
-  # pull_request:
+  pull_request:
   workflow_dispatch:
     inputs:
       branch:
@@ -56,6 +56,7 @@ jobs:
 
       - name: Create Check Run with Annotations (workflow_dispatch)
         if: github.event_name == 'workflow_dispatch'
+        id: check-run
         uses: actions/github-script@v7
         with:
           script: |
@@ -94,9 +95,7 @@ jobs:
               }
             });
 
-            if (results.length > 0) {
-              core.setFailed(`Ruff found ${results.length} issue(s)`);
-            }
+            core.setOutput('has_errors', results.length > 0);
 
       - name: Ruff check (pull_request)
         if: github.event_name == 'pull_request'
@@ -105,7 +104,7 @@ jobs:
         continue-on-error: true
 
       - name: Create Pull Request
-        if: steps.auto-commit.outputs.changes_detected == 'true' || steps.ruff-check.outcome == 'failure'
+        if: steps.auto-commit.outputs.changes_detected == 'true' || steps.check-run.outputs.has_errors == 'true'
         env:
           GH_TOKEN: ${{ github.token }}
           BRANCH: ${{ inputs.branch }}
@@ -133,6 +132,6 @@ jobs:
               --head "${BRANCH}"
           fi
 
-      - name: Fail if ruff errors remain (pull_request)
-        if: github.event_name == 'pull_request' && steps.ruff-check.outcome == 'failure'
+      - name: Fail if ruff errors remain
+        if: (github.event_name == 'pull_request' && steps.ruff-check.outcome == 'failure') || steps.check-run.outputs.has_errors == 'true'
         run: exit 1
