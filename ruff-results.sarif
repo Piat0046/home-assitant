@@ -1,0 +1,450 @@
+{
+  "$schema": "https://json.schemastore.org/sarif-2.1.0.json",
+  "runs": [
+    {
+      "results": [
+        {
+          "level": "error",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///home/runner/work/home-assitant/home-assitant/src/home_ai/common/stt/google_stt.py"
+                },
+                "region": {
+                  "endColumn": 58,
+                  "endLine": 44,
+                  "startColumn": 13,
+                  "startLine": 44
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "Within an `except` clause, raise exceptions with `raise ... from err` or `raise ... from None` to distinguish them from errors in exception handling"
+          },
+          "ruleId": "B904"
+        },
+        {
+          "level": "error",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///home/runner/work/home-assitant/home-assitant/src/home_ai/common/stt/google_stt.py"
+                },
+                "region": {
+                  "endColumn": 56,
+                  "endLine": 46,
+                  "startColumn": 13,
+                  "startLine": 46
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "Within an `except` clause, raise exceptions with `raise ... from err` or `raise ... from None` to distinguish them from errors in exception handling"
+          },
+          "ruleId": "B904"
+        },
+        {
+          "level": "error",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///home/runner/work/home-assitant/home-assitant/src/home_ai/server/api/rest.py"
+                },
+                "region": {
+                  "endColumn": 78,
+                  "endLine": 88,
+                  "startColumn": 51,
+                  "startLine": 88
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "Do not perform function call `Depends` in argument defaults; instead, perform the call within the function, or read the default from a module-level singleton variable"
+          },
+          "ruleId": "B008"
+        },
+        {
+          "level": "error",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///home/runner/work/home-assitant/home-assitant/src/home_ai/server/api/rest.py"
+                },
+                "region": {
+                  "endColumn": 110,
+                  "endLine": 102,
+                  "startColumn": 83,
+                  "startLine": 102
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "Do not perform function call `Depends` in argument defaults; instead, perform the call within the function, or read the default from a module-level singleton variable"
+          },
+          "ruleId": "B008"
+        },
+        {
+          "level": "error",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///home/runner/work/home-assitant/home-assitant/src/home_ai/server/api/rest.py"
+                },
+                "region": {
+                  "endColumn": 110,
+                  "endLine": 117,
+                  "startColumn": 83,
+                  "startLine": 117
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "Do not perform function call `Depends` in argument defaults; instead, perform the call within the function, or read the default from a module-level singleton variable"
+          },
+          "ruleId": "B008"
+        },
+        {
+          "level": "error",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///home/runner/work/home-assitant/home-assitant/src/home_ai/server/api/rest.py"
+                },
+                "region": {
+                  "endColumn": 95,
+                  "endLine": 133,
+                  "startColumn": 68,
+                  "startLine": 133
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "Do not perform function call `Depends` in argument defaults; instead, perform the call within the function, or read the default from a module-level singleton variable"
+          },
+          "ruleId": "B008"
+        },
+        {
+          "fixes": [
+            {
+              "artifactChanges": [
+                {
+                  "artifactLocation": {
+                    "uri": "file:///home/runner/work/home-assitant/home-assitant/src/home_ai/test_ruff_violations.py"
+                  },
+                  "replacements": [
+                    {
+                      "deletedRegion": {
+                        "endColumn": 1,
+                        "endLine": 7,
+                        "startColumn": 1,
+                        "startLine": 6
+                      }
+                    }
+                  ]
+                }
+              ],
+              "description": {
+                "text": "Remove assignment to unused variable `unused_var`"
+              }
+            }
+          ],
+          "level": "error",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///home/runner/work/home-assitant/home-assitant/src/home_ai/test_ruff_violations.py"
+                },
+                "region": {
+                  "endColumn": 15,
+                  "endLine": 6,
+                  "startColumn": 5,
+                  "startLine": 6
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "Local variable `unused_var` is assigned to but never used"
+          },
+          "ruleId": "F841"
+        },
+        {
+          "fixes": [
+            {
+              "artifactChanges": [
+                {
+                  "artifactLocation": {
+                    "uri": "file:///home/runner/work/home-assitant/home-assitant/src/home_ai/test_ruff_violations.py"
+                  },
+                  "replacements": [
+                    {
+                      "deletedRegion": {
+                        "endColumn": 22,
+                        "endLine": 8,
+                        "startColumn": 8,
+                        "startLine": 8
+                      },
+                      "insertedContent": {
+                        "text": "result"
+                      }
+                    }
+                  ]
+                }
+              ],
+              "description": {
+                "text": "Replace with `result`"
+              }
+            }
+          ],
+          "level": "error",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///home/runner/work/home-assitant/home-assitant/src/home_ai/test_ruff_violations.py"
+                },
+                "region": {
+                  "endColumn": 22,
+                  "endLine": 8,
+                  "startColumn": 8,
+                  "startLine": 8
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "Avoid equality comparisons to `True`; use `result:` for truth checks"
+          },
+          "ruleId": "E712"
+        },
+        {
+          "level": "error",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///home/runner/work/home-assitant/home-assitant/src/home_ai/test_ruff_violations.py"
+                },
+                "region": {
+                  "endColumn": 10,
+                  "endLine": 18,
+                  "startColumn": 9,
+                  "startLine": 18
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "Ambiguous variable name: `l`"
+          },
+          "ruleId": "E741"
+        },
+        {
+          "level": "error",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///home/runner/work/home-assitant/home-assitant/tests/common/test_stt.py"
+                },
+                "region": {
+                  "endColumn": 38,
+                  "endLine": 58,
+                  "startColumn": 14,
+                  "startLine": 58
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "Do not assert blind exception: `Exception`"
+          },
+          "ruleId": "B017"
+        },
+        {
+          "fixes": [
+            {
+              "artifactChanges": [
+                {
+                  "artifactLocation": {
+                    "uri": "file:///home/runner/work/home-assitant/home-assitant/tests/logging/test_file_logger.py"
+                  },
+                  "replacements": [
+                    {
+                      "deletedRegion": {
+                        "endColumn": 18,
+                        "endLine": 14,
+                        "startColumn": 9,
+                        "startLine": 14
+                      }
+                    }
+                  ]
+                }
+              ],
+              "description": {
+                "text": "Remove assignment to unused variable `logger`"
+              }
+            }
+          ],
+          "level": "error",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///home/runner/work/home-assitant/home-assitant/tests/logging/test_file_logger.py"
+                },
+                "region": {
+                  "endColumn": 15,
+                  "endLine": 14,
+                  "startColumn": 9,
+                  "startLine": 14
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "Local variable `logger` is assigned to but never used"
+          },
+          "ruleId": "F841"
+        }
+      ],
+      "tool": {
+        "driver": {
+          "informationUri": "https://github.com/astral-sh/ruff",
+          "name": "ruff",
+          "rules": [
+            {
+              "fullDescription": {
+                "text": "## What it does\nChecks for function calls in default function arguments.\n\n## Why is this bad?\nAny function call that's used in a default argument will only be performed\nonce, at definition time. The returned value will then be reused by all\ncalls to the function, which can lead to unexpected behaviour.\n\nParameters with immutable type annotations will be ignored by this rule.\nThose whose default arguments are `NewType` calls where the original type\nis immutable are also ignored.\n\nCalls and types outside of the standard library can be marked as an exception\nto this rule with the [`lint.flake8-bugbear.extend-immutable-calls`] configuration option.\n\n## Example\n\n```python\ndef create_list() -> list[int]:\n    return [1, 2, 3]\n\n\ndef mutable_default(arg: list[int] = create_list()) -> list[int]:\n    arg.append(4)\n    return arg\n```\n\nUse instead:\n\n```python\ndef better(arg: list[int] | None = None) -> list[int]:\n    if arg is None:\n        arg = create_list()\n\n    arg.append(4)\n    return arg\n```\n\nIf the use of a singleton is intentional, assign the result call to a\nmodule-level variable, and use that variable in the default argument:\n\n```python\nERROR = ValueError(\"Hosts weren't successfully added\")\n\n\ndef add_host(error: Exception = ERROR) -> None: ...\n```\n\n## Options\n- `lint.flake8-bugbear.extend-immutable-calls`\n"
+              },
+              "help": {
+                "text": "Do not perform function call `{name}` in argument defaults; instead, perform the call within the function, or read the default from a module-level singleton variable"
+              },
+              "helpUri": "https://docs.astral.sh/ruff/rules/function-call-in-default-argument",
+              "id": "B008",
+              "properties": {
+                "id": "B008",
+                "kind": "flake8-bugbear",
+                "name": "function-call-in-default-argument",
+                "problem.severity": "error"
+              },
+              "shortDescription": {
+                "text": "Do not perform function call `{name}` in argument defaults; instead, perform the call within the function, or read the default from a module-level singleton variable"
+              }
+            },
+            {
+              "fullDescription": {
+                "text": "## What it does\nChecks for `assertRaises` and `pytest.raises` context managers that catch\n`Exception` or `BaseException`.\n\n## Why is this bad?\nThese forms catch every `Exception`, which can lead to tests passing even\nif, e.g., the code under consideration raises a `SyntaxError` or\n`IndentationError`.\n\nEither assert for a more specific exception (builtin or custom), or use\n`assertRaisesRegex` or `pytest.raises(..., match=<REGEX>)` respectively.\n\n## Example\n```python\nself.assertRaises(Exception, foo)\n```\n\nUse instead:\n```python\nself.assertRaises(SomeSpecificException, foo)\n```\n"
+              },
+              "help": {
+                "text": "Do not assert blind exception: `{exception}`"
+              },
+              "helpUri": "https://docs.astral.sh/ruff/rules/assert-raises-exception",
+              "id": "B017",
+              "properties": {
+                "id": "B017",
+                "kind": "flake8-bugbear",
+                "name": "assert-raises-exception",
+                "problem.severity": "error"
+              },
+              "shortDescription": {
+                "text": "Do not assert blind exception: `{exception}`"
+              }
+            },
+            {
+              "fullDescription": {
+                "text": "## What it does\nChecks for `raise` statements in exception handlers that lack a `from`\nclause.\n\n## Why is this bad?\nIn Python, `raise` can be used with or without an exception from which the\ncurrent exception is derived. This is known as exception chaining. When\nprinting the stack trace, chained exceptions are displayed in such a way\nso as make it easier to trace the exception back to its root cause.\n\nWhen raising an exception from within an `except` clause, always include a\n`from` clause to facilitate exception chaining. If the exception is not\nchained, it will be difficult to trace the exception back to its root cause.\n\n## Example\n```python\ntry:\n    ...\nexcept FileNotFoundError:\n    if ...:\n        raise RuntimeError(\"...\")\n    else:\n        raise UserWarning(\"...\")\n```\n\nUse instead:\n```python\ntry:\n    ...\nexcept FileNotFoundError as exc:\n    if ...:\n        raise RuntimeError(\"...\") from None\n    else:\n        raise UserWarning(\"...\") from exc\n```\n\n## References\n- [Python documentation: `raise` statement](https://docs.python.org/3/reference/simple_stmts.html#the-raise-statement)\n"
+              },
+              "help": {
+                "text": "Within an `except*` clause, raise exceptions with `raise ... from err` or `raise ... from None` to distinguish them from errors in exception handling"
+              },
+              "helpUri": "https://docs.astral.sh/ruff/rules/raise-without-from-inside-except",
+              "id": "B904",
+              "properties": {
+                "id": "B904",
+                "kind": "flake8-bugbear",
+                "name": "raise-without-from-inside-except",
+                "problem.severity": "error"
+              },
+              "shortDescription": {
+                "text": "Within an `except*` clause, raise exceptions with `raise ... from err` or `raise ... from None` to distinguish them from errors in exception handling"
+              }
+            },
+            {
+              "fullDescription": {
+                "text": "## What it does\nChecks for equality comparisons to boolean literals.\n\n## Why is this bad?\n[PEP 8] recommends against using the equality operators `==` and `!=` to\ncompare values to `True` or `False`.\n\nInstead, use `if cond:` or `if not cond:` to check for truth values.\n\nIf you intend to check if a value is the boolean literal `True` or `False`,\nconsider using `is` or `is not` to check for identity instead.\n\n## Example\n```python\nif foo == True:\n    ...\n\nif bar == False:\n    ...\n```\n\nUse instead:\n```python\nif foo:\n    ...\n\nif not bar:\n    ...\n```\n\n## Fix safety\n\nThis rule's fix is marked as unsafe, as it may alter runtime behavior when\nused with libraries that override the `==`/`__eq__` or `!=`/`__ne__` operators.\nIn these cases, `is`/`is not` may not be equivalent to `==`/`!=`. For more\ninformation, see [this issue].\n\n[PEP 8]: https://peps.python.org/pep-0008/#programming-recommendations\n[this issue]: https://github.com/astral-sh/ruff/issues/4560\n"
+              },
+              "help": {
+                "text": "Avoid equality comparisons to `True`; use `{cond}:` for truth checks"
+              },
+              "helpUri": "https://docs.astral.sh/ruff/rules/true-false-comparison",
+              "id": "E712",
+              "properties": {
+                "id": "E712",
+                "kind": "pycodestyle",
+                "name": "true-false-comparison",
+                "problem.severity": "error"
+              },
+              "shortDescription": {
+                "text": "Avoid equality comparisons to `True`; use `{cond}:` for truth checks"
+              }
+            },
+            {
+              "fullDescription": {
+                "text": "## What it does\nChecks for the use of the characters 'l', 'O', or 'I' as variable names.\n\nNote: This rule is automatically disabled for all stub files\n(files with `.pyi` extensions). The rule has little relevance for authors\nof stubs: a well-written stub should aim to faithfully represent the\ninterface of the equivalent .py file as it exists at runtime, including any\nambiguously named variables in the runtime module.\n\n## Why is this bad?\nIn some fonts, these characters are indistinguishable from the\nnumerals one and zero. When tempted to use 'l', use 'L' instead.\n\n## Example\n```python\nl = 0\nO = 123\nI = 42\n```\n\nUse instead:\n```python\nL = 0\no = 123\ni = 42\n```\n"
+              },
+              "help": {
+                "text": "Ambiguous variable name: `{name}`"
+              },
+              "helpUri": "https://docs.astral.sh/ruff/rules/ambiguous-variable-name",
+              "id": "E741",
+              "properties": {
+                "id": "E741",
+                "kind": "pycodestyle",
+                "name": "ambiguous-variable-name",
+                "problem.severity": "error"
+              },
+              "shortDescription": {
+                "text": "Ambiguous variable name: `{name}`"
+              }
+            },
+            {
+              "fullDescription": {
+                "text": "## What it does\nChecks for the presence of unused variables in function scopes.\n\n## Why is this bad?\nA variable that is defined but not used is likely a mistake, and should\nbe removed to avoid confusion.\n\nIf a variable is intentionally defined-but-not-used, it should be\nprefixed with an underscore, or some other value that adheres to the\n[`lint.dummy-variable-rgx`] pattern.\n\n## Example\n```python\ndef foo():\n    x = 1\n    y = 2\n    return x\n```\n\nUse instead:\n```python\ndef foo():\n    x = 1\n    return x\n```\n\n## Fix safety\n\nThis rule's fix is marked as unsafe because removing an unused variable assignment may\ndelete comments that are attached to the assignment.\n\n## See also\n\nThis rule does not apply to bindings in unpacked assignments (e.g. `x, y = 1, 2`). See\n[`unused-unpacked-variable`][RUF059] for this case.\n\n## Options\n- `lint.dummy-variable-rgx`\n\n[RUF059]: https://docs.astral.sh/ruff/rules/unused-unpacked-variable/\n"
+              },
+              "help": {
+                "text": "Local variable `{name}` is assigned to but never used"
+              },
+              "helpUri": "https://docs.astral.sh/ruff/rules/unused-variable",
+              "id": "F841",
+              "properties": {
+                "id": "F841",
+                "kind": "Pyflakes",
+                "name": "unused-variable",
+                "problem.severity": "error"
+              },
+              "shortDescription": {
+                "text": "Local variable `{name}` is assigned to but never used"
+              }
+            }
+          ],
+          "version": "0.14.7"
+        }
+      }
+    }
+  ],
+  "version": "2.1.0"
+}
