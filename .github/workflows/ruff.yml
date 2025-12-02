@@ -1,7 +1,7 @@
 name: Ruff Auto Fix
 
 on:
-  pull_request:
+  # pull_request:
   workflow_dispatch:
     inputs:
       branch:
@@ -21,6 +21,7 @@ on:
 permissions:
   contents: write
   pull-requests: write
+  checks: write
 
 jobs:
   ruff-fix:
@@ -50,9 +51,58 @@ jobs:
           file_pattern: "*.py"
 
       - name: Ruff check
-        run: ruff check --output-format=github .
-        continue-on-error: true
+        run: ruff check --output-format=json --output-file=ruff-results.json . || true
         id: ruff-check
+
+      - name: Create Check Run with Annotations (workflow_dispatch)
+        if: github.event_name == 'workflow_dispatch'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const results = JSON.parse(fs.readFileSync('ruff-results.json', 'utf8'));
+
+            const annotations = results.slice(0, 50).map(r => ({
+              path: r.filename.replace(process.cwd() + '/', ''),
+              start_line: r.location.row,
+              end_line: r.end_location.row,
+              annotation_level: 'warning',
+              message: `[${r.code}] ${r.message}`,
+              title: r.code
+            }));
+
+            const sha = '${{ inputs.branch }}';
+            const ref = await github.rest.git.getRef({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              ref: `heads/${sha}`
+            });
+
+            await github.rest.checks.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              name: 'Ruff',
+              head_sha: ref.data.object.sha,
+              status: 'completed',
+              conclusion: results.length > 0 ? 'failure' : 'success',
+              output: {
+                title: `Ruff found ${results.length} issue(s)`,
+                summary: results.length > 0
+                  ? `Found ${results.length} issue(s) that require manual fixes.`
+                  : 'All checks passed!',
+                annotations: annotations
+              }
+            });
+
+            if (results.length > 0) {
+              core.setFailed(`Ruff found ${results.length} issue(s)`);
+            }
+
+      - name: Ruff check (pull_request)
+        if: github.event_name == 'pull_request'
+        run: |
+          ruff check --output-format=github .
+        continue-on-error: true
 
       - name: Create Pull Request
         if: steps.auto-commit.outputs.changes_detected == 'true' || steps.ruff-check.outcome == 'failure'
@@ -83,6 +133,6 @@ jobs:
               --head "${BRANCH}"
           fi
 
-      - name: Fail if ruff errors remain
-        if: steps.ruff-check.outcome == 'failure'
+      - name: Fail if ruff errors remain (pull_request)
+        if: github.event_name == 'pull_request' && steps.ruff-check.outcome == 'failure'
         run: exit 1
